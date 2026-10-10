@@ -1,0 +1,11 @@
+-- /SimplyOS/index.txt
+{
+  format = 1,
+  updated = 1791588984,                 -- unix seconds, informational
+  packages = {
+    { kind = "os",     id = "simplyos",   name = "SimplyOS",   latest = "26.1.0",
+      versions = { "26.1.0" },                    note = "Boot, shell, settings" },
+    { kind = "engine", id = "ge",         name = "Game Engine", latest = "26.1.0",
+      versions = { "26.1.0" },                    note = "" },
+  },
+}
