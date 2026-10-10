@@ -1,0 +1,23 @@
+body {
+    padding: 2em;
+    background-color: #22222a;
+    color: #eeeeee;
+    font-family: "Roboto", sans-serif;
+}
+code {
+    outline: 1px solid #666677;
+    background-color: #66667755;
+    border-radius: 5px;
+    padding: 0 5px;
+    color: #eeeeee;
+    font-family: "Courier New", Courier, monospace;
+}
+a {
+    color: #ccccff;
+    text-decoration: none;
+}
+.installerDivider {
+    border: 1px solid #666677;
+    margin: 10px 0;
+    width: 45%;
+}
