@@ -27,10 +27,11 @@ def("phone.name", "text", "Phone", { max = 24 })
 def("hardware.powerButtonSide", "enum", "none", { values = { "none", "bottom", "front", "back" } })
 def("net.maxRange", "int", 0, { min = 0, max = 100000 })   -- 0 = not calibrated yet
 def("messages.maxBytes", "int", 100000, { min = 10000, max = 10000000 })
+def("notify.server", "bool", true)
 def("dev.enabled", "bool", false)
 def("dev.fpsOverlay", "bool", false)
 def("dev.logging", "bool", false)
-def("dev.watchdog", "bool", true)
+def("dev.watchdog", "bool", false)  -- off by default: timeout units unknown, timeout 0 trips instantly
 
 M.defaults = {}
 for k, d in pairs(D) do M.defaults[k] = d.default end

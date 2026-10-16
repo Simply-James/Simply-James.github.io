@@ -5,6 +5,8 @@ local M = {}
 
 function M.start(ctx)
     local sched, settings = ctx.sched, ctx.settings
+    local okn, nerr = pcall(function() dofile("/os/kernel/netsvc.lua").start(ctx) end)
+    if not okn then ctx.log("net service failed to start: " .. tostring(nerr)) end
     local wdt = peripheral.find("tm_wdt")
     ctx.wdt = wdt
     if not wdt then ctx.log("no watchdog peripheral") return end
@@ -14,6 +16,14 @@ function M.start(ctx)
     end)
 
     sched.spawn("wdt", function()
+        -- never enable a watchdog whose timeout is 0 (it reboots the computer at once)
+        local usable = false
+        pcall(function() usable = (tonumber(wdt.getTimeout()) or 0) > 0 end)
+        if not (settings.get("dev.watchdog") and usable) then
+            pcall(wdt.setEnabled, false)
+            ctx.log("watchdog left disabled")
+            return
+        end
         local ready = false
         local armed = false
         local deadline = os.clock() + 15

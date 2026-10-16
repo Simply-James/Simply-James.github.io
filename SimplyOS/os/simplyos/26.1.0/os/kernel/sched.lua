@@ -93,6 +93,11 @@ local function dispatch(ev)
     end
 end
 
+-- deliver one event straight to one task (used for routed touches)
+function S.send(t, ...)
+    if t and t.alive and (t.filter == nil or t.filter == (...)) then step(t, ...) end
+end
+
 function S.stop(reason) stopReason = reason or "stop" end
 
 function S.run(opts)
